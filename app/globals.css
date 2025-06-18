@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset some base styles */
+body {
+  @apply m-0 p-0 text-base;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Mobile-first approach */
+header {
+  @apply bg-black flex justify-between items-center p-4;
+}
+
+#pfp {
+  @apply w-10 h-10 sm:w-12 sm:h-12;
+}
+
+/* Button styles */
+.button {
+  @apply w-full bg-gray-500 p-3 text-center text-white font-medium rounded;
+}
+
+/* Form styles */
+input, select, textarea {
+  @apply w-full p-2 border rounded text-base mb-2;
+}
+
+button[type="submit"], .primary-button {
+  @apply w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded font-medium;
+}
+
+/* Table styles for mobile */
+table {
+  @apply w-full;
+}
+
+th, td {
+  @apply p-2;
+}
+
+@media (max-width: 640px) {
+  /* Stack tables on mobile */
+  table, thead, tbody, th, td, tr {
+    @apply block;
+  }
+  
+  thead tr {
+    @apply hidden;
+  }
+  
+  tr {
+    @apply border mb-4;
+  }
+  
+  td {
+    @apply border-b border-gray-200 relative pl-[50%];
+  }
+  
+  td:before {
+    @apply absolute left-2 font-medium;
+    content: attr(data-label);
+  }
+}

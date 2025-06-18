@@ -1,0 +1,225 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "SignIn": {
+      "name": "SignIn",
+      "columns": {
+        "UserID": {
+          "autoincrement": true,
+          "name": "UserID",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "PlayerName": {
+          "autoincrement": false,
+          "name": "PlayerName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Password": {
+          "autoincrement": false,
+          "name": "Password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "PriceHistory": {
+      "name": "PriceHistory",
+      "columns": {
+        "Stock1": {
+          "autoincrement": false,
+          "name": "Stock1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Stock2": {
+          "autoincrement": false,
+          "name": "Stock2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Stock3": {
+          "autoincrement": false,
+          "name": "Stock3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Stock4": {
+          "autoincrement": false,
+          "name": "Stock4",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Stock5": {
+          "autoincrement": false,
+          "name": "Stock5",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Stocks": {
+      "name": "Stocks",
+      "columns": {
+        "StockID": {
+          "autoincrement": true,
+          "name": "StockID",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "CurrentPrice": {
+          "autoincrement": false,
+          "name": "CurrentPrice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "LastPrice": {
+          "autoincrement": false,
+          "name": "LastPrice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Holdings": {
+      "name": "Holdings",
+      "columns": {
+        "UserID": {
+          "autoincrement": false,
+          "name": "UserID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "StockID": {
+          "autoincrement": false,
+          "name": "StockID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Amount": {
+          "autoincrement": false,
+          "name": "Amount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "MoneySpent": {
+          "autoincrement": false,
+          "name": "MoneySpent",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Holdings_UserID_SignIn_UserID_fk": {
+          "name": "Holdings_UserID_SignIn_UserID_fk",
+          "tableFrom": "Holdings",
+          "tableTo": "SignIn",
+          "columnsFrom": [
+            "UserID"
+          ],
+          "columnsTo": [
+            "UserID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Holdings_StockID_Stocks_StockID_fk": {
+          "name": "Holdings_StockID_Stocks_StockID_fk",
+          "tableFrom": "Holdings",
+          "tableTo": "Stocks",
+          "columnsFrom": [
+            "StockID"
+          ],
+          "columnsTo": [
+            "StockID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Money": {
+      "name": "Money",
+      "columns": {
+        "UserID": {
+          "autoincrement": false,
+          "name": "UserID",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Balance": {
+          "autoincrement": false,
+          "name": "Balance",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Money_UserID_SignIn_UserID_fk": {
+          "name": "Money_UserID_SignIn_UserID_fk",
+          "tableFrom": "Money",
+          "tableTo": "SignIn",
+          "columnsFrom": [
+            "UserID"
+          ],
+          "columnsTo": [
+            "UserID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

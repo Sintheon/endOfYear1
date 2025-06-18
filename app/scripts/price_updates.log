@@ -1,0 +1,53 @@
+Stock price update log created at 2025-02-26T22:49:13.072Z
+
+[2025-02-26T22:49:13.080Z] Starting stock price update...
+[2025-02-26T22:49:13.090Z] Error updating stock prices: 
+
+[2025-02-26T22:50:28.693Z] Starting stock price update...
+[2025-02-26T22:50:28.700Z] Error updating stock prices: 
+
+[2025-02-26T22:51:12.335Z] Starting stock price update...
+[2025-02-26T22:51:12.343Z] Error updating stock prices: 
+
+[2025-02-26T22:52:12.376Z] Starting stock price update...
+[2025-02-26T22:52:12.404Z] Error updating stock prices: 
+[2025-02-26T23:06:05.836Z] [INFO] Stock Price Updater Started
+[2025-02-26T23:06:05.847Z] [INFO] API URL: http://localhost:3000
+[2025-02-26T23:06:05.847Z] [INFO] Update Interval: 1 minutes
+[2025-02-26T23:06:05.847Z] [INFO] Starting stock price update...
+[2025-02-26T23:06:05.847Z] [ERROR] Stock price update failed: Admin password not configured
+[2025-02-26T23:06:05.847Z] [INFO] Scheduled stock updates every 1 minutes
+[2025-02-26T23:07:05.850Z] [INFO] Starting stock price update...
+[2025-02-26T23:07:05.855Z] [ERROR] Stock price update failed: Admin password not configured
+[2025-02-26T23:07:21.174Z] [WARN] Received shutdown signal. Stopping stock price updater.
+[2025-02-26T23:10:22.151Z] [INFO] Stock Price Updater Started
+[2025-02-26T23:10:22.160Z] [INFO] API URL: http://localhost:3000
+[2025-02-26T23:10:22.160Z] [INFO] Update Interval: 1 minutes
+[2025-02-26T23:10:22.160Z] [INFO] Starting stock price update...
+[2025-02-26T23:10:22.161Z] [ERROR] Stock price update failed: Admin password not configured
+[2025-02-26T23:10:22.161Z] [INFO] Scheduled stock updates every 1 minutes
+[2025-02-26T23:11:22.162Z] [INFO] Starting stock price update...
+[2025-02-26T23:11:22.166Z] [ERROR] Stock price update failed: Admin password not configured
+[2025-02-26T23:12:02.866Z] [WARN] Received shutdown signal. Stopping stock price updater.
+[2025-02-26T23:14:16.698Z] [INFO] Stock Price Updater Started
+[2025-02-26T23:14:16.707Z] [INFO] API URL: http://localhost:3000
+[2025-02-26T23:14:16.707Z] [INFO] Update Interval: 1 minutes
+[2025-02-26T23:14:16.738Z] [ERROR] Initialization failed: `headers` was called outside a request scope. Read more: https://nextjs.org/docs/messages/next-dynamic-api-wrong-context
+[2025-02-26T23:18:35.293Z] [INFO] Stock Price Updater Started
+[2025-02-26T23:18:35.305Z] [INFO] API URL: http://localhost:3000
+[2025-02-26T23:18:35.305Z] [INFO] Update Interval: 1 minutes
+[2025-02-26T23:18:35.305Z] [INFO] Starting stock price update...
+[2025-02-26T23:18:35.343Z] [ERROR] Stock price update failed: fetch failed
+[2025-02-26T23:18:35.343Z] [ERROR] Initialization failed: fetch failed
+[2025-02-26T23:20:02.390Z] [INFO] Stock Price Updater Started
+[2025-02-26T23:20:02.393Z] [INFO] API URL: http://localhost:3000
+[2025-02-26T23:20:02.393Z] [INFO] Update Interval: 1 minutes
+[2025-02-26T23:20:02.393Z] [INFO] Starting stock price update...
+[2025-02-26T23:20:02.405Z] [ERROR] Stock price update failed: No response received. Check network connection.
+[2025-02-26T23:20:02.406Z] [ERROR] Initialization failed: 
+[2025-02-27T05:43:23.505Z] [INFO] Stock Price Updater Started
+[2025-02-27T05:43:23.514Z] [INFO] API URL: http://localhost:3000
+[2025-02-27T05:43:23.514Z] [INFO] Update Interval: 1 minutes
+[2025-02-27T05:43:23.514Z] [INFO] Starting stock price update...
+[2025-02-27T05:43:23.531Z] [ERROR] Stock price update failed: No response received. Check network connection.
+[2025-02-27T05:43:23.532Z] [ERROR] Initialization failed: 
