@@ -76,7 +76,7 @@ async function updateStockPrices() {
               .then(() => resolve(response))
               .catch(error => {
                 log.error(`Failed to record price history: ${error.message}`);
-                resolve(response); // Still resolve the main promise if price recording fails
+                resolve(response);
               });
           } catch (error) {
             log.error(`Error parsing response: ${error.message}`);
@@ -90,28 +90,23 @@ async function updateStockPrices() {
       });
     });
 
-    // Handle request errors
     req.on('error', (error) => {
       log.error(`Stock price update request failed: ${error.message}`);
       reject(error);
     });
 
-    // Send the request body
     req.write(requestBody);
     req.end();
   });
 }
 
-// Function to record price history
 async function recordPriceHistory() {
   log.info('Recording price history...');
 
-  // Determine if we're using HTTP or HTTPS
   const httpModule = config.apiUrl.startsWith('https') ? https : http;
   const url = new URL('/api/price-history', config.apiUrl);
 
   return new Promise((resolve, reject) => {
-    // Prepare the request options
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -119,21 +114,17 @@ async function recordPriceHistory() {
       }
     };
 
-    // Create request body with admin key for authentication
     const requestBody = JSON.stringify({
       adminKey: config.adminApiKey
     });
 
-    // Send the request
     const req = httpModule.request(url, requestOptions, (res) => {
       let data = '';
 
-      // Handle response data
       res.on('data', (chunk) => {
         data += chunk;
       });
 
-      // Handle response completion
       res.on('end', () => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           try {
@@ -152,19 +143,16 @@ async function recordPriceHistory() {
       });
     });
 
-    // Handle request errors
     req.on('error', (error) => {
       log.error(`Price history recording request failed: ${error.message}`);
       reject(error);
     });
 
-    // Send the request body
     req.write(requestBody);
     req.end();
   });
 }
 
-// Main function to start the updater
 async function startUpdater() {
   log.info('Stock Price Updater Started');
   log.info(`API URL: ${config.apiUrl}`);
@@ -175,7 +163,6 @@ async function startUpdater() {
     log.info(`Scheduled stock updates every ${config.interval} minutes`);
     setInterval(updateStockPrices, config.interval * 60 * 1000);
     
-    // Handle process termination
     process.on('SIGINT', () => {
       log.warn('Received shutdown signal. Stopping stock price updater.');
       process.exit(0);
@@ -187,5 +174,4 @@ async function startUpdater() {
   }
 }
 
-// Start the updater
 startUpdater();

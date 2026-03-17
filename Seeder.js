@@ -57,7 +57,7 @@ async function main() {
       }
     }
     
-    console.log(`Parsed ${students.length} total students from CSV`);
+    console.log(`Parsed ${students.length} students`);
     
     const filteredStudents = students.filter(student => 
       student.class.startsWith('IV') || student.class.startsWith('TB2')

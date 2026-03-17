@@ -96,7 +96,7 @@ function generateImprovedPriceChange(currentPrice: number, initialPrice: number 
     }
     if (percentFromInitial > 25) {
       if (Math.random() < 0.7) {
-        return -(3 + Math.random() * 8);
+        return -(5 + Math.random() * 10);
       }
     }
     if (percentFromInitial > 100) {

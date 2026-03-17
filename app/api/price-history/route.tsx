@@ -24,8 +24,7 @@ export async function POST(req: Request) {
     if (currentStocks.length !== 5) {
       return NextResponse.json({ message: "Expected 5 stocks in the system" }, { status: 400 });
     }
-
-    // Insert price history record
+    
     await db.insert(priceHistory).values({
       stock1: currentStocks[0].CurrentPrice,
       stock2: currentStocks[1].CurrentPrice,
@@ -33,6 +32,7 @@ export async function POST(req: Request) {
       stock4: currentStocks[3].CurrentPrice,
       stock5: currentStocks[4].CurrentPrice,
       timestamp: new Date().toISOString(),
+    });
 
     return NextResponse.json({ 
       message: "Price history recorded successfully" 

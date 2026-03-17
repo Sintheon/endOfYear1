@@ -7,7 +7,6 @@ export async function POST(req: Request) {
   try {
     const { senderId, targetId, amount } = await req.json();
 
-    // Validate input
     if (!senderId || !targetId || amount === undefined) {
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }

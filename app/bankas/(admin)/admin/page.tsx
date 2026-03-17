@@ -37,6 +37,14 @@ export default function AdminDashboard() {
   const [resetError, setResetError] = useState("");
   const [resetSuccess, setResetSuccess] = useState("");
   
+  const [isUpdatingPrices, setIsUpdatingPrices] = useState(false);
+  const [priceUpdateError, setPriceUpdateError] = useState("");
+  const [priceUpdateSuccess, setPriceUpdateSuccess] = useState("");
+  
+  const [isRecordingHistory, setIsRecordingHistory] = useState(false);
+  const [historyError, setHistoryError] = useState("");
+  const [historySuccess, setHistorySuccess] = useState("");
+  
   useEffect(() => {
     if (status === "loading") return;
 
@@ -106,43 +114,61 @@ export default function AdminDashboard() {
   };
 
   const handleUpdateStockPrices = async () => {
+    setPriceUpdateError("");
+    setPriceUpdateSuccess("");
+    setIsUpdatingPrices(true);
+    
     try {
       const response = await fetch('/api/stocks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({}) // Send an empty object to ensure body is parsed correctly
       });
       
+      const result = await response.json();
+      
       if (response.ok) {
-        alert('Stock prices updated successfully');
-        fetchData();
+        setPriceUpdateSuccess('Stock prices updated successfully');
+        fetchData(); // Refresh stock data
       } else {
-        alert('Failed to update stock prices');
+        setPriceUpdateError(result.message || 'Failed to update stock prices');
       }
     } catch (error) {
       console.error('Error updating stock prices:', error);
-      alert('Error updating stock prices');
+      setPriceUpdateError('Error updating stock prices');
+    } finally {
+      setIsUpdatingPrices(false);
     }
   };
 
   const handleRecordPriceHistory = async () => {
+    setHistoryError("");
+    setHistorySuccess("");
+    setIsRecordingHistory(true);
+    
     try {
       const response = await fetch('/api/price-history', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({}) // Send an empty object
       });
       
+      const result = await response.json();
+      
       if (response.ok) {
-        alert('Price history recorded successfully');
+        setHistorySuccess('Price history recorded successfully');
       } else {
-        alert('Failed to record price history');
+        setHistoryError(result.message || 'Failed to record price history');
       }
     } catch (error) {
       console.error('Error recording price history:', error);
-      alert('Error recording price history');
+      setHistoryError('Error recording price history');
+    } finally {
+      setIsRecordingHistory(false);
     }
   };
 
@@ -205,19 +231,44 @@ export default function AdminDashboard() {
         </div>
       </div>
       
+      {/* Success/Error messages for all actions */}
       {resetSuccess && (
-        <div className="bg-green-100 p-4 rounded-lg border border-green-300 mb-6">
+        <div className="bg-green-100 p-4 rounded-lg border border-green-300 mb-4">
           <p className="text-green-700 font-medium">{resetSuccess}</p>
         </div>
       )}
       
       {resetError && (
-        <div className="bg-red-100 p-4 rounded-lg border border-red-300 mb-6">
+        <div className="bg-red-100 p-4 rounded-lg border border-red-300 mb-4">
           <p className="text-red-700 font-medium">{resetError}</p>
         </div>
       )}
       
-      {}
+      {priceUpdateSuccess && (
+        <div className="bg-green-100 p-4 rounded-lg border border-green-300 mb-4">
+          <p className="text-green-700 font-medium">{priceUpdateSuccess}</p>
+        </div>
+      )}
+      
+      {priceUpdateError && (
+        <div className="bg-red-100 p-4 rounded-lg border border-red-300 mb-4">
+          <p className="text-red-700 font-medium">{priceUpdateError}</p>
+        </div>
+      )}
+      
+      {historySuccess && (
+        <div className="bg-green-100 p-4 rounded-lg border border-green-300 mb-4">
+          <p className="text-green-700 font-medium">{historySuccess}</p>
+        </div>
+      )}
+      
+      {historyError && (
+        <div className="bg-red-100 p-4 rounded-lg border border-red-300 mb-4">
+          <p className="text-red-700 font-medium">{historyError}</p>
+        </div>
+      )}
+      
+      {/* System Money Tracking */}
       <div className="bg-white p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-bold mb-4">System Money Tracking</h2>
         
@@ -243,7 +294,7 @@ export default function AdminDashboard() {
         </div>
       </div>
       
-      {}
+      {/* Add/Remove User Balance */}
       <div className="bg-white p-4 rounded-lg shadow mb-6">
         <h2 className="text-xl font-bold mb-4">Add/Remove User Balance</h2>
         
@@ -286,7 +337,7 @@ export default function AdminDashboard() {
         </form>
       </div>
       
-      {}
+      {/* Admin Actions */}
       <div className="bg-white p-4 rounded-lg shadow">
         <h2 className="text-xl font-bold mb-4">Admin Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -295,21 +346,23 @@ export default function AdminDashboard() {
           </Link>
           
           <button 
-            className="bg-purple-600 text-white p-3 rounded font-medium"
+            className="bg-purple-600 text-white p-3 rounded font-medium disabled:bg-purple-400"
             onClick={handleUpdateStockPrices}
+            disabled={isUpdatingPrices}
           >
-            Update Stock Prices
+            {isUpdatingPrices ? "Updating..." : "Update Stock Prices"}
           </button>
           
           <button 
-            className="bg-green-600 text-white p-3 rounded font-medium"
+            className="bg-green-600 text-white p-3 rounded font-medium disabled:bg-green-400"
             onClick={handleRecordPriceHistory}
+            disabled={isRecordingHistory}
           >
-            Record Price History
+            {isRecordingHistory ? "Recording..." : "Record Price History"}
           </button>
           
           <button 
-            className="bg-red-600 text-white p-3 rounded font-medium"
+            className="bg-red-600 text-white p-3 rounded font-medium disabled:bg-red-400"
             onClick={handleResetMarket}
             disabled={isResetting}
           >

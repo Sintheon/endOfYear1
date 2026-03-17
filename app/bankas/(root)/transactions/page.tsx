@@ -81,7 +81,6 @@ const TransferForm = () => {
         setAmount("");
         setTargetId("");
         
-        // Refresh the balance
         if (session?.user?.id) {
           const balanceResponse = await fetch(`/api/balance?userId=${session.user.id}`);
           if (balanceResponse.ok) {
